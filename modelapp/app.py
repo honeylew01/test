@@ -3,7 +3,8 @@ import pandas as pd
 import joblib
 
 # Load the trained churn model
-MODEL_PATH = "model.pkl"
+MODEL_PATH = os.path.join(os.path.dirname(__file__), "model.pkl")
+
 model = joblib.load(MODEL_PATH)
 
 # Streamlit UI Layout
