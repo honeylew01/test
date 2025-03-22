@@ -1,6 +1,7 @@
 import streamlit as st
 import pandas as pd
 import joblib
+import os
 
 # Load the trained churn model
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "model.pkl")
