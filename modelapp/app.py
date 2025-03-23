@@ -3,8 +3,12 @@ import pandas as pd
 import joblib
 import os
 
+
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+os.chdir(SCRIPT_DIR)
+
 # Load the trained churn model
-MODEL_PATH = os.path.join(os.path.dirname(__file__), "model.pkl")
+MODEL_PATH = os.path.join(SCRIPT_DIR, "model.pkl")
 
 model = joblib.load(MODEL_PATH)
 
