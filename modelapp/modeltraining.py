@@ -18,5 +18,5 @@ churn_model = RandomForestClassifier(n_estimators=100, random_state=42)
 churn_model.fit(X_train, y_train)
 
 # Save the model
-joblib.dump(churn_model, "modelapp/model.pkl")
+joblib.dump(churn_model, "model.pkl")
 print("✅ Model trained & saved!")
