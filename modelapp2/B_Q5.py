@@ -8,7 +8,7 @@ from imblearn.over_sampling import SMOTE
 
 
 ############# Model 1 ##################
-df = pd.read_csv("app/data/Churn_Modelling.csv")
+df = pd.read_csv("Churn_Modelling.csv")
 
 
 df = df.drop(columns=['RowNumber','CustomerId','Surname'])
@@ -59,7 +59,7 @@ grid_search.fit(x_resampled, y_resampled)
 
 best_rf = grid_search.best_estimator_
 
-joblib.dump(best_rf, 'churn_model_1.pkl')
+joblib.dump(best_rf, 'churn_model.pkl')
 #print("Churn model 1 trained & saved!")
 
 
@@ -70,7 +70,7 @@ joblib.dump(best_rf, 'churn_model_1.pkl')
 
 ############# Model 2 ##################
 
-df = pd.read_excel('app/data/default of credit card clients.xls', header=1)
+df = pd.read_excel('default of credit card clients.xls', header=1)
 
 
 
@@ -130,5 +130,5 @@ best_rf = grid_search.best_estimator_
 
 
 
-joblib.dump(best_rf, 'churn_model_2.pkl')
+joblib.dump(best_rf, 'churn_cc_model.pkl')
 #print("Churn model 1 trained & saved!")
