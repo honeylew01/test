@@ -59,7 +59,7 @@ grid_search.fit(x_resampled, y_resampled)
 
 best_rf = grid_search.best_estimator_
 
-joblib.dump(best_rf, 'churn_model.pkl')
+joblib.dump(best_rf, '../Dashboard/churn_model.pkl')
 print("Churn model 1 trained & saved!")
 
 
@@ -130,5 +130,5 @@ best_rf = grid_search.best_estimator_
 
 
 
-joblib.dump(best_rf, 'churn_cc_model.pkl')
+joblib.dump(best_rf, '../Dashboard/churn_cc_model.pkl')
 print("Churn model 2 trained & saved!")
