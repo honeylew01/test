@@ -8,7 +8,7 @@ from imblearn.over_sampling import SMOTE
 
 
 ############# Model 1 ##################
-df = pd.read_csv("app/data/Churn_Modelling.csv")
+df = pd.read_csv("Churn_Modelling.csv")
 
 
 df = df.drop(columns=['RowNumber','CustomerId','Surname'])
@@ -45,11 +45,11 @@ x_resampled, y_resampled = smote.fit_resample(x_train, y_train)
 rf = RandomForestClassifier(class_weight={0:1, 1:5}, random_state=3101)
 
 param_grid = {
-    'n_estimators': [800,1000],  #number of trees
-    'max_depth': [5, 10], #tree depth
-    'min_samples_split': [10, 15], #min samples to split
-    'min_samples_leaf': [2, 5], #min samples per leaf
-    'bootstrap': [True, False]
+    'n_estimators': [1000],  #number of trees
+    'max_depth': [10], #tree depth
+    'min_samples_split': [15], #min samples to split
+    'min_samples_leaf': [5], #min samples per leaf
+    'bootstrap': [False]
 }
 
 grid_search = GridSearchCV(rf, param_grid, cv=10, scoring='recall', n_jobs=-1)
@@ -60,7 +60,7 @@ grid_search.fit(x_resampled, y_resampled)
 best_rf = grid_search.best_estimator_
 
 joblib.dump(best_rf, '../../Dashboard/churn_model.pkl')
-#print("Churn model 1 trained & saved!")
+print("Churn model 1 trained & saved!")
 
 
 
@@ -70,7 +70,7 @@ joblib.dump(best_rf, '../../Dashboard/churn_model.pkl')
 
 ############# Model 2 ##################
 
-df = pd.read_excel('app/data/default of credit card clients.xls', header=1)
+df = pd.read_excel('default of credit card clients.xls', header=1)
 
 
 
@@ -116,11 +116,11 @@ x_train, x_test, y_train, y_test = train_test_split(x,y,test_size=0.2,random_sta
 rf = RandomForestClassifier(class_weight='balanced', random_state=3101)
 
 param_grid = {
-    'n_estimators': [50, 100],  
-    'max_depth': [None, 5],  
-    'min_samples_split': [2, 5],  
-    'min_samples_leaf': [1, 5],  
-    'bootstrap': [True, False]
+    'n_estimators': [100],  
+    'max_depth': [None],  
+    'min_samples_split': [5],  
+    'min_samples_leaf': [1],  
+    'bootstrap': [False]
 }
 
 grid_search = GridSearchCV(rf, param_grid, cv=10, scoring='recall', n_jobs=-1)
@@ -131,4 +131,4 @@ best_rf = grid_search.best_estimator_
 
 
 joblib.dump(best_rf, '../../Dashboard/churn_cc_model.pkl')
-#print("Churn model 1 trained & saved!")
+print("Churn model 2 trained & saved!")
