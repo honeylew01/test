@@ -1,9 +1,18 @@
+# Use an official Python base image
 FROM python:3.10
 
+# Set the working directory inside the container
+WORKDIR /Dashboard
 
-ADD app.py .
-
+# Copy the requirements file and install dependencies
 COPY requirements.txt .
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python", "./app.py"]
+# Copy all files into the container
+COPY . .
+
+# Expose the port Streamlit runs on
+EXPOSE 8501
+
+# Run the Streamlit app
+CMD ["streamlit", "run", "app.py", "--server.port=8501", "--server.address=0.0.0.0"]
