@@ -14,9 +14,8 @@ os.chdir(SCRIPT_DIR)
 
 # business questions options
 FUNCTIONS = {
+    "Please select a function.": None, #Home page
     "CTR-Based 'Real-Time' Campaign Optimizer": None, #Question 7
-    
-    
     
     "Customer Churn Prediction": {      #Question 10
         "Customer general data": "churn_model.pkl",
@@ -79,6 +78,8 @@ function_choice = st.selectbox("Choose a function:", list(FUNCTIONS.keys()))
 
 # Step 2: Show models based on selected function
 if function_choice:
+
+    ############################ Question 7 ###################################
     if function_choice == "CTR-Based 'Real-Time' Campaign Optimizer":
         #st.set_page_config(page_title="CTR-Based Ad Optimizer", layout="centered")
         st.title("🎯 CTR-Based 'Real-Time' Campaign Optimizer")
@@ -197,10 +198,10 @@ if function_choice:
         st.subheader("📊 Ad Campaign Overview")
         df["CTR"] = df["Clicks"] / df["Impressions"].replace(0, 1)
         st.dataframe(df.style.format({"CTR": "{:.2%}"}))
+    ######################################################################
 
 
-
-    ############### Question 10 ###################
+    ####################### Question 10 ####################################
     elif function_choice == "Customer Churn Prediction":  
         st.title("📊 Customer Churn Prediction")
         model_choice = st.selectbox(f"Choose a model for {function_choice}:", list(FUNCTIONS[function_choice].keys()))
